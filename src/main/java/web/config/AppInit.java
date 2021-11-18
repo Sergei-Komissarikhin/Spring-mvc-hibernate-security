@@ -10,10 +10,12 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
 
-public class WebInit extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class AppInit extends AbstractAnnotationConfigDispatcherServletInitializer {
     @Override
     protected Class<?>[] getRootConfigClasses() {
-        return new Class[]{AppConfig.class};
+        return new Class<?>[]{
+                WebConfig.class
+        };
     }
 
     @Override
