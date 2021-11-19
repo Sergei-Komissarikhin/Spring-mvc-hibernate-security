@@ -2,7 +2,6 @@ package web.model;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.thymeleaf.expression.Sets;
 import web.service.RoleService;
 import web.service.UserService;
 
