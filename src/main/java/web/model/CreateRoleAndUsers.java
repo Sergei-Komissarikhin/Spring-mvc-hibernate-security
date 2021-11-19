@@ -6,7 +6,6 @@ import web.service.RoleService;
 import web.service.UserService;
 
 import javax.annotation.PostConstruct;
-import java.util.HashSet;
 import java.util.Set;
 
 @Component
@@ -23,13 +22,15 @@ public class CreateRoleAndUsers {
     @PostConstruct
     void createUsers() {
 
-        Set<Role> roles = new HashSet<>();
-        roles.add(new Role("admin"));
-        roles.add(new Role("user"));
+        roleService.addRole(new Role("admin"));
+        roleService.addRole(new Role("user"));
 
-        userService.addUser(new User("Sergei", "Komissarikhin", 37
-                , "sus@mail.ru", "*********", "Admin"
-                , roles));
+        userService.addUser(new User("Sergei", "Komissarikhin", 37,
+                "sus@mail.ru", "*********", "Admin",
+                Set.of(roleService.getRoleByName("admin"), roleService.getRoleByName("user"))));
 
+        userService.addUser(new User("Anna", "Shimanovskaya", 37,
+                "asusai@ya.ru", "************", "User",
+                Set.of(roleService.getRoleByName("user"))));
     }
 }

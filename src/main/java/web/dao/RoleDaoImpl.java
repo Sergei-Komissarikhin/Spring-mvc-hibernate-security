@@ -15,4 +15,12 @@ public class RoleDaoImpl implements RoleDao{
     public void addRole(Role role) {
         entityManager.persist(role);
     }
+
+    @Override
+    public Role getRoleByName(String name){
+        return (Role) entityManager.createQuery("SELECT role from Role role where role.role = :name")
+                .setParameter("name", name)
+                .getSingleResult();
+
+    }
 }

@@ -33,7 +33,7 @@ public class User {
     @Column(name = "role")
     private String role;
 
-    @ManyToMany(cascade = CascadeType.ALL,
+    @ManyToMany(cascade = CascadeType.MERGE,
     fetch = FetchType.LAZY)
     @JoinTable(
             name = "users_roles",
@@ -118,6 +118,14 @@ public class User {
         this.role = role;
     }
 
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -128,6 +136,7 @@ public class User {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
+                ", roles=" + roles +
                 '}';
     }
 }

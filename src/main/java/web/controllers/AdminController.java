@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import web.model.User;
+import web.service.RoleService;
 import web.service.UserService;
 
 import java.util.ArrayList;
@@ -25,6 +26,7 @@ public class AdminController {
         roles.add("User");
         this.userService = userService;
     }
+
     @GetMapping
     public String index(Model model){
         model.addAttribute("users",userService.getAllUsers());
