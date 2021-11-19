@@ -3,6 +3,8 @@ package web.model;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -31,16 +33,33 @@ public class User {
     @Column(name = "role")
     private String role;
 
+    @ManyToMany(cascade = CascadeType.ALL,
+    fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles;
+
+    public void addRoleToUser(Role role){
+        if(roles==null){
+            roles = new HashSet<>();
+        }
+        roles.add(role);
+    }
+
     public User() {
     }
 
-    public User(String firstName, String lastName, int age, String email, String password, String role) {
+    public User(String firstName, String lastName, int age, String email, String password, String role, Set<Role> roles) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
         this.email = email;
         this.password = password;
         this.role = role;
+        this.roles = roles;
     }
 
     public Long getId() {
