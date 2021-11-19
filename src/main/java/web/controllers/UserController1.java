@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/")
 public class UserController1 {
 
-    @RequestMapping(value = "hello", method = RequestMethod.GET)
+    @RequestMapping()
     public String printWelcome(ModelMap model) {
         List<String> messages = new ArrayList<>();
         messages.add("Hello!");
@@ -22,7 +22,6 @@ public class UserController1 {
         model.addAttribute("messages", messages);
         return "hello";
     }
-
     @GetMapping(value = "login")
     public String loginPage() {
         return "login";
