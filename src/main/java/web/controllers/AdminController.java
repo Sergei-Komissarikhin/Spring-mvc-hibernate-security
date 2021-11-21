@@ -6,9 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import web.model.User;
-import web.service.RoleService;
+import web.service.UserDetailServiceImpl;
 import web.service.UserService;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,15 +17,18 @@ import java.util.List;
 @RequestMapping("/admin")
 public class AdminController {
 
+    private final UserDetailServiceImpl userDetailService;
+
     private final UserService userService;
     private final List<String> roles;
 
     @Autowired
-    public AdminController(UserService userService) {
+    public AdminController(UserService userService, UserDetailServiceImpl userDetailService) {
         roles = new ArrayList<>();
         roles.add("Admin");
         roles.add("User");
         this.userService = userService;
+        this.userDetailService = userDetailService;
     }
 
     @GetMapping
@@ -36,7 +40,6 @@ public class AdminController {
     @GetMapping("/{id}")
     public String getUserById(@PathVariable("id") long id, Model model){
         model.addAttribute("user", userService.getUserById(id));
-        System.out.println("hello");
         return "admin/show";
     }
 
@@ -75,5 +78,10 @@ public class AdminController {
         userService.deleteUser(id);
         return "redirect:/admin";
     }
+//    @GetMapping("/user/{id}")
+//    public String userShowPage(Principal principal, Model model){
+//        model.addAttribute("user",userDetailService.loadUserByUsername(principal.getName()));
+//        return "/user/show";
+//    }
 
 }

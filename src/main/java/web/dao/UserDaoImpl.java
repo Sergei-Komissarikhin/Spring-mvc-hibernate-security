@@ -41,4 +41,13 @@ public class UserDaoImpl implements UserDao{
     public void deleteUser(Long id) {
         entityManager.remove(entityManager.find(User.class, id));
     }
+    @Override
+    public User getUserByName(String name){
+        return entityManager.createQuery("SELECT u FROM User u " +
+                        "INNER JOIN FETCH u.roles " +
+                        "WHERE u.firstName = :name",
+                        User.class)
+                .setParameter("name", name)
+                .getSingleResult();
+    }
 }

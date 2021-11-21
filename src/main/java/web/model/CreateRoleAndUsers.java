@@ -22,15 +22,15 @@ public class CreateRoleAndUsers {
     @PostConstruct
     void createUsers() {
 
-        roleService.addRole(new Role("admin"));
-        roleService.addRole(new Role("user"));
+        roleService.addRole(new Role("ADMIN"));
+        roleService.addRole(new Role("USER"));
 
         userService.addUser(new User("Sergei", "Komissarikhin", 37,
-                "sus@mail.ru", "*********", "Admin",
-                Set.of(roleService.getRoleByName("admin"), roleService.getRoleByName("user"))));
+                "sus@mail.ru", "Sergei", "Admin",
+                Set.of(roleService.getRoleByName("ADMIN"), roleService.getRoleByName("USER"))));
 
         userService.addUser(new User("Anna", "Shimanovskaya", 37,
-                "asusai@ya.ru", "************", "User",
-                Set.of(roleService.getRoleByName("user"))));
+                "asusai@ya.ru", "Anna", "User",
+                Set.of(roleService.getRoleByName("USER"))));
     }
 }

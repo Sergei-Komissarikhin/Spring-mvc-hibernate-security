@@ -7,7 +7,8 @@
 <body>
 
 <table th:width="500" th:border="2">
-    <p><h2>Доступные пользователи</h2></p>
+    <p>
+    <h2>Доступные пользователи</h2></p>
     <thead>
     <tr>
         <th>ID</th>
@@ -15,25 +16,42 @@
         <th>Last name</th>
         <th>Age</th>
         <th>Email</th>
+        <th>Password</th>
         <th>Role</th>
     </tr>
     </thead>
 
     <tr th:each="user :${users}">
         <td th:text="${user.getId()}"/>
-        <td><a th:href="@{/admin/{id}(id=${user.getId()})}"  th:text="${user.getFirstName()}"></a></td>
-<!--        <td th:text="${user.getFirstName()}"/>-->
+        <td th:text="${user.getFirstName()}"/>
         <td th:text="${user.getLastName()}"/>
         <td th:text="${user.getAge()}"/>
+        <td th:text="${user.getEmail()}"/>
         <td th:text="${user.getPassword()}"/>
         <td th:text="${user.getRole()}"/>
-
+        <td>
+            <form th:method="GET" th:action="@{/admin/{id}/edit(id=${user.getId()})}">
+                <input type="submit" value="EDIT">
+            </form>
+        </td>
+        <td>
+            <form th:method="DELETE" th:action="@{/admin/{id}(id=${user.getId()})}">
+                <input type="submit" value="DELETE">
+            </form>
+        </td>
+        <!--        <td><a th:href="@{/admin/{id}(id=${user.getId()})}"  th:="${user.getFirstName()}"></a></td>-->
     </tr>
 </table>
 <br>
-<hr>
+
 <form th:method="GET" th:action="@{/admin/new}">
     <input type="submit" value="Create new User">
+</form>
+
+<br>
+
+<form th:method="GET" th:action="@{/logout}">
+    <input type="submit" value="Logout">
 </form>
 </body>
 </html>

@@ -16,15 +16,18 @@
         <th>Role</th>
     </tr>
     </thead>
-<!--    <tr >-->
-<!--        <td th:text="${user.getId()}"/>-->
-<!--        <td th:text="${user.getFirstName()}"/>-->
-<!--        <td th:text="${user.getLastName()}"/>-->
-<!--        <td th:text="${user.getAge()}"/>-->
-<!--        <td th:text="${user.getPassword()}"/>-->
-<!--        <td th:text="${user.getRole()}"/>-->
-<!--    </tr>-->
+    <tr >
+        <td th:text="${user.getId()}"/>
+        <td th:text="${user.getFirstName()}"/>
+        <td th:text="${user.getLastName()}"/>
+        <td th:text="${user.getAge()}"/>
+        <td th:text="${user.getPassword()}"/>
+        <td th:text="${user.getRole()}"/>
+    </tr>
 </table>
 <br>
+<form th:method="GET" th:action="@{/logout}">
+    <input type="submit" value="Logout">
+</form>
 </body>
 </html>
