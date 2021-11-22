@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Все юзеры</title>
@@ -27,7 +27,7 @@
         <td th:text="${user.getLastName()}"/>
         <td th:text="${user.getAge()}"/>
         <td th:text="${user.getEmail()}"/>
-        <td th:text="${user.getPassword()}"/>
+        <td th:password="${user.getPassword()}"/>
         <td>
             <th:block th:each="role :${user.getRoles()}">
                 <label th:text="${role.role}"/>

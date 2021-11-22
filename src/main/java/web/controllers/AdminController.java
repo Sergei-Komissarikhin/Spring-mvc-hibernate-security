@@ -32,8 +32,9 @@ public class AdminController {
 
     @GetMapping
     public String index(Model model) {
+
         model.addAttribute("users", userService.getAllUsers());
-        model.addAttribute("roles", roleService.getRoles());
+//        model.addAttribute("roles", roleService.getRoles());
         return "admin/index";
     }
 
@@ -53,8 +54,8 @@ public class AdminController {
 
     @PostMapping()
     public String createUser(@ModelAttribute("user") User user,
-                            @RequestParam("rolesForUser") Set<Role> roles) {
-        userService.addUser(user,roles);
+                             @RequestParam("rolesForUser") Set<Role> roles) {
+        userService.addUser(user, roles);
         return "redirect:/admin";
     }
 
@@ -70,7 +71,7 @@ public class AdminController {
     public String update(@PathVariable("id") long id,
                          @ModelAttribute("user") User user,
                          @RequestParam("rolesForUser") Set<Role> roles) {
-        userService.updateUser(user,roles);
+        userService.updateUser(user, roles);
         return "redirect:/admin";
     }
 
@@ -79,10 +80,4 @@ public class AdminController {
         userService.deleteUser(id);
         return "redirect:/admin";
     }
-//    @GetMapping("/user/{id}")
-//    public String userShowPage(Principal principal, Model model){
-//        model.addAttribute("user",userDetailService.loadUserByUsername(principal.getName()));
-//        return "/user/show";
-//    }
-
 }

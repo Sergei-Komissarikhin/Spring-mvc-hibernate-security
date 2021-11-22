@@ -23,7 +23,7 @@ public class UserDaoImpl implements UserDao{
     @Override
     public List<User> getAllUsers(){
         List<User> users = entityManager
-                .createQuery("SELECT u FROM User u", User.class).getResultList();
+                .createQuery("SELECT u FROM User u").getResultList();
         System.out.println(users);
         return users;
     }
@@ -44,6 +44,7 @@ public class UserDaoImpl implements UserDao{
     public void deleteUser(Long id) {
         entityManager.remove(entityManager.find(User.class, id));
     }
+
     @Override
     public User getUserByName(String name){
         return entityManager.createQuery("SELECT u FROM User u " +
