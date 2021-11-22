@@ -5,6 +5,9 @@ import web.model.Role;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.HashSet;
+import java.util.Set;
+
 @Repository
 public class RoleDaoImpl implements RoleDao{
 
@@ -22,5 +25,10 @@ public class RoleDaoImpl implements RoleDao{
                 .setParameter("name", name)
                 .getSingleResult();
 
+    }
+
+    @Override
+    public Set<Role> getRoles() {
+        return new HashSet<>(entityManager.createQuery("SELECT roles FROM Role roles",Role.class).getResultList());
     }
 }

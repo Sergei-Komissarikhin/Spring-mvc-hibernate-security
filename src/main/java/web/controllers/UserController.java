@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import web.service.RoleService;
 import web.service.UserDetailServiceImpl;
 
 import java.security.Principal;
@@ -17,9 +18,11 @@ import java.util.List;
 public class UserController {
 
     private final UserDetailServiceImpl userService;
+
     @Autowired
-    public UserController(UserDetailServiceImpl userService) {
+    public UserController(UserDetailServiceImpl userService, RoleService roleService) {
         this.userService = userService;
+
     }
 
 

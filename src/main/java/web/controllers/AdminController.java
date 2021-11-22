@@ -6,11 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import web.model.User;
+import web.service.RoleService;
 import web.service.UserDetailServiceImpl;
 import web.service.UserService;
 
-import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -20,16 +19,19 @@ public class AdminController {
     private final UserDetailServiceImpl userDetailService;
 
     private final UserService userService;
+    private final RoleService roleService;
 
     @Autowired
-    public AdminController(UserService userService, UserDetailServiceImpl userDetailService) {
+    public AdminController(UserService userService, UserDetailServiceImpl userDetailService, RoleService roleService) {
         this.userService = userService;
         this.userDetailService = userDetailService;
+        this.roleService = roleService;
     }
 
     @GetMapping
     public String index(Model model){
-        model.addAttribute("users",userService.getAllUsers());
+        model.addAttribute("users", userService.getAllUsers());
+        model.addAttribute("roles",roleService.getRoles());
         return "admin/index";
     }
 
