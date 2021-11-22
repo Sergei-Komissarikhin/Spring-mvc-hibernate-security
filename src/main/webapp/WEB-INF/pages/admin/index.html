@@ -17,7 +17,6 @@
         <th>Age</th>
         <th>Email</th>
         <th>Password</th>
-        <th>Role</th>
     </tr>
     </thead>
 
@@ -28,7 +27,6 @@
         <td th:text="${user.getAge()}"/>
         <td th:text="${user.getEmail()}"/>
         <td th:text="${user.getPassword()}"/>
-        <td th:text="${user.getRole()}"/>
         <td>
             <form th:method="GET" th:action="@{/admin/{id}/edit(id=${user.getId()})}">
                 <input type="submit" value="EDIT">

@@ -20,13 +20,9 @@ public class AdminController {
     private final UserDetailServiceImpl userDetailService;
 
     private final UserService userService;
-    private final List<String> roles;
 
     @Autowired
     public AdminController(UserService userService, UserDetailServiceImpl userDetailService) {
-        roles = new ArrayList<>();
-        roles.add("Admin");
-        roles.add("User");
         this.userService = userService;
         this.userDetailService = userDetailService;
     }
@@ -45,7 +41,6 @@ public class AdminController {
 
     @GetMapping("/new")
     public String newUser(Model model){
-        model.addAttribute("roles",roles);
         model.addAttribute("user", new User());
         return "admin/new";
     }
@@ -60,7 +55,6 @@ public class AdminController {
     @GetMapping("/{id}/edit")
     public String edit(@PathVariable("id") long id,
                        Model model){
-        model.addAttribute("roles",roles);
         model.addAttribute("user",userService.getUserById(id));
         return "admin/edit";
     }

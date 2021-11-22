@@ -35,13 +35,6 @@
 
     <br>
 
-    <label for="role">Role: </label>
-    <select th:field="*{role}" id="role">
-        <option th:each="role : ${roles}"
-                th:value="${role}"
-        th:text="${role}"></option>
-    </select>
-
     <br>
 
     <input type="submit" value="Create User">
