@@ -34,7 +34,15 @@
     <input type="text" th:field="*{password}" id="password">
 
     <br>
-
+    <ul>
+        <li>
+            <th:block th:each="role :${roles}">
+                <label th:text="${role.role}"/>
+                <input th:name="rolesForUser" type="checkbox" th:value="${role.role}"/>
+                <br>
+            </th:block>
+        </li>
+    </ul>
     <br>
 
     <input type="submit" value="Create User">

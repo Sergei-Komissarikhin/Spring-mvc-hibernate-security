@@ -26,11 +26,11 @@ public class CreateRoleAndUsers {
         roleService.addRole(new Role("USER"));
 
         userService.addUser(new User("Sergei", "Ivanov", 37,
-                "sus@mail.ru", "Sergei",
+                "sus@mail.ru", "1234",
                 Set.of(roleService.getRoleByName("ADMIN"), roleService.getRoleByName("USER"))));
 
         userService.addUser(new User("Anna", "Ivanova", 37,
-                "asu@ya.ru", "Anna",
+                "asu@ya.ru", "1234",
                 Set.of(roleService.getRoleByName("USER"))));
     }
 }

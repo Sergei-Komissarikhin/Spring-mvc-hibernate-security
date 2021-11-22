@@ -13,6 +13,7 @@
         <th>Last name</th>
         <th>Age</th>
         <th>Email</th>
+        <th>Roles</th>
     </tr>
     </thead>
     <tr >
@@ -21,7 +22,12 @@
         <td th:text="${user.getLastName()}"/>
         <td th:text="${user.getAge()}"/>
         <td th:text="${user.getPassword()}"/>
-
+        <td>
+            <th:block th:each="role : ${user.getRoles()}">
+                <label th:text="${role.role}"/>
+                <br>
+            </th:block>
+        </td>
     </tr>
 </table>
 <br>
