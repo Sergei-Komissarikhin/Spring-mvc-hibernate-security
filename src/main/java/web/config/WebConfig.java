@@ -13,8 +13,6 @@ import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
 import javax.servlet.Filter;
-
-
 @Configuration
 @EnableWebMvc
 @ComponentScan("web")

@@ -14,8 +14,7 @@ import web.config.handler.LoginSuccessHandler;
 
 import javax.sql.DataSource;
 
-@Configuration
-@EnableWebSecurity
+@EnableWebSecurity(debug = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     private final LoginSuccessHandler loginSuccessHandler;
@@ -73,7 +72,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login").anonymous()
                 .antMatchers("/user").hasAnyAuthority("ADMIN", "ROLE")
                 // защищенные URL
-                .antMatchers("/admin").hasAuthority("ADMIN")
+                .antMatchers("/admin").hasAnyAuthority("ADMIN","ROLE")
                 .and().formLogin()
                 .successHandler(loginSuccessHandler);
 //                .anyRequest().authenticated();
